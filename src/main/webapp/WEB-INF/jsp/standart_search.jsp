@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="by.mycloud_zapchast.www.entity.User"%>
-<%@ page import="by.mycloud_zapchast.www.entity.StandartSearchItem"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
 <html>
@@ -87,22 +86,22 @@ input {
 			</div>
 
 		</div>
-		<c:if test="${item_bd_list != null && item_bd_list.size()!=0}">
+	
 			<c:forEach var="item" items="${item_bd_list}">
 				<div class="shadowlineconteiner" style="background-color: none; justify-content: center;">
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.getName()}</a>
+						<a>${item.name()}</a>
 					</div>
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.getNn()}</a>
+						<a>${item.nn()}</a>
 					</div>
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.getNnSap()}</a>
+						<a>${item.nnSap()}</a>
 					</div>
 
 				</div>
 			</c:forEach>
-		</c:if>
+	
 		<c:if test="${item_bd_list == null || item_bd_list.size()==0}">
 			<div class="shadowlineconteiner" style="background-color: none; justify-content: center;">
 				<div class="columnconteiner" style="float: left;">

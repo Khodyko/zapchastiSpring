@@ -54,6 +54,9 @@ public class ItemController {
 		List<StandartSearchItem> items= itemService.listStandartSearchItem(standartSearchItemFromUI);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("standart_pre_search");
+		modelAndView.addObject("item_bd_list",items);
+		System.out.println("controller "+items);
+		System.out.println(items.get(0).getName());
 		
 		return modelAndView;
 
