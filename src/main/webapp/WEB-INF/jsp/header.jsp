@@ -32,7 +32,7 @@
 
 	<div class="lineconteiner">
 
-		<form:form	action="${pageContext.request.contextPath}/item/goToStandartSearch"
+		<form:form	action="${pageContext.request.contextPath}/item/goToStandartPreSearch"
 				method="GET"> 
 			<button class="zapchast_button">Запчасти</button>
 		</form:form>

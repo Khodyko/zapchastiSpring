@@ -26,7 +26,7 @@
 		<h1 class="bluetxtcolor">Войти на сайт</h1>
 		<div style="display: flex; flex-direction: column;">
 			<font style="text-size: 5;">Еще нет аккаунта?</font>
-			<a href="Controller?commandToController=GO_TO_REGISTRATION_1_PAGE">Страница регистрации</a>
+			<a href="<c:url value="/user/goToRegistration1"/>">Страница регистрации</a>
 			<br>
 		</div>
 		<form action="Controller" method="post" style="color: white">

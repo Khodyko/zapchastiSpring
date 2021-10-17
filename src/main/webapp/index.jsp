@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-	response.sendRedirect("item/main");
+	response.sendRedirect("user/loginPage");
 	%>
 </body>
 </html>

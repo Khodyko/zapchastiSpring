@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>`
+
 
 <!DOCTYPE html>
 <html>
@@ -15,8 +18,8 @@
 </style>
 <meta charset="utf-8">
 <title>Zapchasti</title>
-<link rel="stylesheet" href="resources/css/property.css" type="text/css">
-<link rel="stylesheet" href="resources/css/header.css" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/property.css"/>" type="text/css"/>
+<link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>" type="text/css"/>
 <style type="text/css">
 input {
 	background-color: #058acc;
@@ -47,31 +50,29 @@ input {
 
 	<!-- Input Fields -->
 	<div class="lineconteiner" style="background-color: none; justify-content: center;">
-		<form action="Controller" method="post">
-			<input type="hidden" name="commandToController" value="STANDART_SEARCH" />
+		<form:form	action="${pageContext.request.contextPath}/item/goToStandartSearch"
+				method="POST" >
 			<div class="columnconteiner2string" style="float: left;">
-				<input type="hidden" name="commandToController" value="" />
-				<a style="color: white;">Наименование запчасти</a>
-				<input type="text" name="itemName" value="" placeholder="Введите наименование" />
+				<a style="color: white; margin-left: 5px;">Наименование запчасти</a>
+				<input type="text" name="nameUI" value="" placeholder="Введите наименование" />
 			</div>
 			<div class="columnconteiner2string" style="float: left;">
-				<a style="color: white;">Номенклатурный №</a>
-				<input type="text" data-mask="nn_mask" name="nn" value="" placeholder="Введите номер" />
-
+				<a style="color: white; margin-left: 5px;">Номенклатурный №</a>
+				<input type="text" data-mask="nn_mask" name="nnUI" value="" placeholder="Введите номер" />
 			</div>
 			<div class="columnconteiner2string" style="float: left;">
-				<a style="color: white;">№ SAP</a>
-				<input type="text"  name="nnSap" value="" placeholder="Введите №SAP" />
+				<a style="color: white; margin-left: 5px;">№ SAP</a>
+				<input type="text" name="nnSapUI" value="" placeholder="Введите №SAP" />
 			</div>
-
 			<div class="columnconteiner2string" style="float: left;">
 				<button style="color: #FFB74E; align-item: center; border-radius: 20px; height: 40px; margin-top: 18px;">
 					<a>Найти</a>
 					<img style="margin-left: 20px; height: 15px; width: 15px;" src="resources/pictures/search_icon.png" />
 				</button>
 			</div>
-		</form>
+		</form:form>
 	</div>
+
 
 	<div class="search_big_conteiner">
 		<div class="lineconteiner" style="background-color: none; justify-content: center;">
@@ -90,13 +91,13 @@ input {
 			<c:forEach var="item" items="${item_bd_list}">
 				<div class="shadowlineconteiner" style="background-color: none; justify-content: center;">
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.name()}</a>
+						<a>${item.name}</a>
 					</div>
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.nn()}</a>
+						<a>${item.nn}</a>
 					</div>
 					<div class="columnconteiner" style="float: left;">
-						<a>${item.nnSap()}</a>
+						<a>${item.nnSap}</a>
 					</div>
 
 				</div>

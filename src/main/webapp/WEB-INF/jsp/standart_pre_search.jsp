@@ -50,20 +50,19 @@
 
 	<!-- Input Fields -->
 	<div class="lineconteiner" style="background-color: none; justify-content: center;">
-		<form action="Controller" method="post">
-			<input type="hidden" name="commandToController" value="STANDART_SEARCH" />
+		<form:form	action="${pageContext.request.contextPath}/item/goToStandartSearch"
+				method="POST" >
 			<div class="columnconteiner2string" style="float: left;">
-				<input type="hidden" name="commandToController" value="" />
 				<a style="color: white; margin-left: 5px;">Наименование запчасти</a>
-				<input type="text" name="itemName" value="" placeholder="Введите наименование" />
+				<input type="text" name="nameUI" value="" placeholder="Введите наименование" />
 			</div>
 			<div class="columnconteiner2string" style="float: left;">
 				<a style="color: white; margin-left: 5px;">Номенклатурный №</a>
-				<input type="text" data-mask="nn_mask" name="nn" value="" placeholder="Введите номер" />
+				<input type="text" data-mask="nn_mask" name="nnUI" value="" placeholder="Введите номер" />
 			</div>
 			<div class="columnconteiner2string" style="float: left;">
 				<a style="color: white; margin-left: 5px;">№ SAP</a>
-				<input type="text" name="nnSap" value="" placeholder="Введите №SAP" />
+				<input type="text" name="nnSapUI" value="" placeholder="Введите №SAP" />
 			</div>
 			<div class="columnconteiner2string" style="float: left;">
 				<button style="color: #FFB74E; align-item: center; border-radius: 20px; height: 40px; margin-top: 18px;">
@@ -71,7 +70,7 @@
 					<img style="margin-left: 20px; height: 15px; width: 15px;" src="resources/pictures/search_icon.png" />
 				</button>
 			</div>
-		</form>
+		</form:form>
 	</div>
 
 	<div class="search_big_conteiner">
