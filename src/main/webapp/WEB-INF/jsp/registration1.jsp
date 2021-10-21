@@ -40,7 +40,7 @@
 				<option value=""><a>Выберите Ваше предприятие</a></option>
 				<c:if test="${depo_bd_list != null}">
 					<c:forEach var="depo" items="${depo_bd_list}">
-						<option value="${depo}">${depo.getName()}</option>
+						<option value="${depo.getId()}">${depo.getName()}</option>
 					</c:forEach>
 				</c:if>
 			</select>

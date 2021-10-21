@@ -12,7 +12,7 @@ public interface ItemService {
 
 	List<Depo> getDepoList();
 
-	List<Sector> getSectorList(Depo depoUI);
+	List<Sector> getSectorList(Integer depoUI);
 	
 
 }

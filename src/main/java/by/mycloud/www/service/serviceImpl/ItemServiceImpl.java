@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	@Transactional
-	public List<Sector> getSectorList(Depo depoUI) {
+	public List<Sector> getSectorList(Integer depoUI) {
 		List<Sector> sectorList = itemDao.getSectorList(depoUI);
 		return sectorList;
 	}

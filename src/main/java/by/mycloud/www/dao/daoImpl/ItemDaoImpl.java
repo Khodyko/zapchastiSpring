@@ -16,7 +16,10 @@ import by.mycloud.www.entity.StandartSearchItem;
 public class ItemDaoImpl implements ItemDao {
 	final private static String QUERY_GET_STANDART_SEARCH_LIST = "FROM StandartSearchItem WHERE name LIKE  :name AND nn LIKE :nn AND nnSap LIKE :nnSap";
 	final private static String QUERY_GET_DEPO_LIST = "FROM Depo";
-	final private static String QUERY_GET_SECTOR_LIST_BY_DEPO_ID = "FROM Sector WHERE depos : = depoUI";
+	/**
+	 * 
+	 */
+	final private static String QUERY_GET_SECTOR_LIST_BY_DEPO_ID = "FROM Sector WHERE depos.id_depo  = : depoUI1";
 	
 	
 	@Autowired
@@ -55,11 +58,11 @@ public class ItemDaoImpl implements ItemDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Sector> getSectorList(Depo depoUI) {
-		System.out.println("depoUI:"+ depoUI);
+	public List<Sector> getSectorList(Integer depoUI1) {
+		System.out.println("depoUI:"+ depoUI1);
 		Session session = sessionFactory.getCurrentSession();
 		List<Sector> sectorList = (List<Sector>) session.createQuery(QUERY_GET_SECTOR_LIST_BY_DEPO_ID)
-				.setParameter("depoUI", depoUI)
+				.setParameter("depoUI", depoUI1)
 				.list();
 		System.out.println("sectorlist DAO: "+sectorList);
 		return sectorList;

@@ -55,7 +55,7 @@ public class UserController {
 		}
 		
 		@RequestMapping("/goToRegistration2")
-		public ModelAndView goToRegistration2(@RequestParam(defaultValue = "") Depo depoUI,
+		public ModelAndView goToRegistration2(@RequestParam(defaultValue = "") Integer depoUI,
 				@RequestParam(defaultValue = "1") String nameUI
 				) {
 			System.out.println("controller nameID: "+ nameUI);
