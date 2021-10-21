@@ -15,8 +15,8 @@
 </style>
 <meta charset="utf-8">
 <title>REGISTRATION_1_PAGE</title>
-<link rel="stylesheet" href="<c:url value="/resources/css/registration.css"/>" type="text/css"/>
-<link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>" type="text/css"/>
+<link rel="stylesheet" href="<c:url value="/resources/css/registration.css"/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value="/resources/css/header.css"/>" type="text/css" />
 </head>
 <body>
 	<%@include file="header.jsp"%>
@@ -32,33 +32,33 @@
 			<a href="Controller?commandToController=GO_TO_AUTHORIZATION_PAGE">Страница авторизации</a>
 			<br>
 		</div>
-		
-		<form action="Controller" method="post" style="color: white, margin-bottom:50px;">
-			<input type="hidden" name="commandToController" value="GO_TO_REGISTRATION_2_PAGE" />
-			<select name="depo"
+		<form:form action="${pageContext.request.contextPath}/user/goToRegistration2" method="POST" style="color: white, margin-bottom:50px;">
+
+			<select name="depoIdUI"
 				style="margin: 5px; border-color: #35B9FF; border-width: 1px; border-style: solid; border-radius: 9px; width: 212px; height: 45px; color: #809EAE; padding-left: 4px;">
 
-				<option name="depo" value=""><a>Выберите Ваше предприятие</a></option>
+				<option value=""><a>Выберите Ваше предприятие</a></option>
 				<c:if test="${depo_bd_list != null}">
 					<c:forEach var="depo" items="${depo_bd_list}">
-						<option value="${depo.getId()}">${depo.getName()}</option>
+						<option value="${depo}">${depo.getName()}</option>
 					</c:forEach>
 				</c:if>
 			</select>
-			
-			<input type="text" name="name" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
+
+			<input type="text" name="nameUI" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
 				placeholder="Имя" />
-			<input type="text" name="second_name" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
+			<input type="text" name="secondNameUI" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
 				placeholder="Фамилия" />
 
 			<input type="submit" value="Дальше" class="bluebutton" style="width: 220px; height: 40px;" />
-		<br><br><br>
-		<a class="redmessage" >${param.user_message}</a>
-		<br><br><br>
-		</form>
-		
-		
-		
+			<br>
+			<br>
+			<br>
+			<a class="redmessage">${param.user_message}</a>
+			<br>
+			<br>
+			<br>
+		</form:form>
 	</div>
 </body>
 </html>

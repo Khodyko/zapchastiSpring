@@ -8,27 +8,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.mycloud.www.dao.ItemDao;
 import by.mycloud.www.entity.Depo;
+import by.mycloud.www.entity.Sector;
 import by.mycloud.www.entity.StandartSearchItem;
 import by.mycloud.www.service.ItemService;
 
 @Service
 public class ItemServiceImpl implements ItemService {
-	
+
 	@Autowired
 	private ItemDao itemDao;
 
 	@Override
 	@Transactional
 	public List<StandartSearchItem> listStandartSearchItem(StandartSearchItem standartSearchItem) {
-		List<StandartSearchItem> items= itemDao.listStandartSearchItem(standartSearchItem);
+		List<StandartSearchItem> items = itemDao.listStandartSearchItem(standartSearchItem);
 		return items;
 	}
 
 	@Override
 	@Transactional
 	public List<Depo> getDepoList() {
-		List<Depo> depoList=itemDao.getDepoList();
+		List<Depo> depoList = itemDao.getDepoList();
 		return depoList;
+	}
+
+	@Override
+	@Transactional
+	public List<Sector> getSectorList(Depo depoUI) {
+		List<Sector> sectorList = itemDao.getSectorList(depoUI);
+		return sectorList;
 	}
 
 }

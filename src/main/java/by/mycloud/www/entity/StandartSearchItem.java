@@ -1,6 +1,7 @@
 package by.mycloud.www.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +12,25 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Immutable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
 @Table(name = "item")
-@Data
+@Setter
+
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
 @Immutable
 public class StandartSearchItem implements Serializable {
 	
@@ -36,17 +50,7 @@ public class StandartSearchItem implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	public StandartSearchItem(Integer idItem, String nnSap, String nn, String name) {
-		super();
-		this.idItem = idItem;
-		this.nnSap = nnSap;
-		this.nn = nn;
-		this.name = name;
-	}
-
-	public StandartSearchItem() {
 	
-	}
 	
 	
 	

@@ -9,15 +9,20 @@ import org.springframework.stereotype.Repository;
 
 import by.mycloud.www.dao.ItemDao;
 import by.mycloud.www.entity.Depo;
+import by.mycloud.www.entity.Sector;
 import by.mycloud.www.entity.StandartSearchItem;
 
 @Repository
 public class ItemDaoImpl implements ItemDao {
 	final private static String QUERY_GET_STANDART_SEARCH_LIST = "FROM StandartSearchItem WHERE name LIKE  :name AND nn LIKE :nn AND nnSap LIKE :nnSap";
 	final private static String QUERY_GET_DEPO_LIST = "FROM Depo";
+	final private static String QUERY_GET_SECTOR_LIST_BY_DEPO_ID = "FROM Sector WHERE depos : = depoUI";
+	
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<StandartSearchItem> listStandartSearchItem(StandartSearchItem standartSearchItem) {
@@ -37,6 +42,7 @@ public class ItemDaoImpl implements ItemDao {
 		return "%" + string + "%";
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Depo> getDepoList() {
@@ -45,5 +51,20 @@ public class ItemDaoImpl implements ItemDao {
 		System.out.println("depolist: "+depoList);
 		return depoList;
 	}
+
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Sector> getSectorList(Depo depoUI) {
+		System.out.println("depoUI:"+ depoUI);
+		Session session = sessionFactory.getCurrentSession();
+		List<Sector> sectorList = (List<Sector>) session.createQuery(QUERY_GET_SECTOR_LIST_BY_DEPO_ID)
+				.setParameter("depoUI", depoUI)
+				.list();
+		System.out.println("sectorlist DAO: "+sectorList);
+		return sectorList;
+	}
+	
+	
 
 }

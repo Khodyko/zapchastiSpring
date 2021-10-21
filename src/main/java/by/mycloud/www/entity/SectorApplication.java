@@ -1,6 +1,7 @@
 package by.mycloud.www.entity;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +15,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "sector_appliction")
-@Data
+@Setter
+
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
 public class SectorApplication {
 	
 	@Id
@@ -39,7 +53,7 @@ public class SectorApplication {
 	
 	@NotNull(message = "{message.is.required}")
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="id_parent_depo", referencedColumnName = "depo_id")
+	@JoinColumn(name="id_parent_depo", referencedColumnName = "id_depo")
 	//manytomany?
 	private Depo depo;
 	

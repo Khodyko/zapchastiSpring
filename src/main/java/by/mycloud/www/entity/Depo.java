@@ -1,5 +1,9 @@
 package by.mycloud.www.entity;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,21 +11,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "depo_list")
-@Data
-public class Depo {
+@Setter
 
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
+
+public class Depo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "depo_id")
+	@Column(name = "id_depo")
 	private Integer id;
 
 	@NotNull(message = "{message.is.required}")
@@ -29,10 +50,11 @@ public class Depo {
 	@Column(name = "depo_name")
 	private String name;
 
-//	@ManyToMany
-//	@JoinTable(name = "depo_parent_sector", joinColumns = @JoinColumn(name = "depo_id"), inverseJoinColumns = @JoinColumn(name = "id_sector"))
-//	private List<Sector> sector;
-//	
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "depo_parent_sector", joinColumns = {@JoinColumn(name = "id_depo")}, inverseJoinColumns = {@JoinColumn(name = "id_sector")})
+	Set<Sector> sectors=new HashSet<Sector>();
+	
 //	@ManyToOne (optional=false, cascade=CascadeType.ALL)
 //    @JoinColumn (name="id_depo")
 //    private DepoApplication depoApplication;

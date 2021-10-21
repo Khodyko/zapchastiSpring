@@ -12,11 +12,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.Set;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "depo_appliction")
-@Data
+@Setter
+
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
 public class DepoApplication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +45,7 @@ public class DepoApplication {
 	
 	@NotNull(message = "{message.is.required}")
 	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="id_depo", referencedColumnName = "depo_id")
+	@JoinColumn(name="id_depo", referencedColumnName = "id_depo")
 	private Depo depo;
 	
 	@NotNull(message = "{message.is.required}")

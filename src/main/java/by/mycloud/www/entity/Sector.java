@@ -1,7 +1,12 @@
 package by.mycloud.www.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +19,30 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "sector_list")
-@Data
-public class Sector {
+@Setter
+
+@Getter
+
+@AllArgsConstructor
+
+@NoArgsConstructor
+
+@ToString
+
+public class Sector implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_sector")
@@ -30,7 +53,9 @@ public class Sector {
 	@Column(name = "name_sector")
 	private String name;
 	
-	@ManyToMany
-	@JoinTable(name = "depo_parent_sector", joinColumns = @JoinColumn(name = "id_sector"), inverseJoinColumns = @JoinColumn(name = "depo_id"))
-	private List<Sector> sector;
-}
+	@ToString.Exclude
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "depo_parent_sector", joinColumns = {@JoinColumn(name = "id_sector")}, inverseJoinColumns = {@JoinColumn(name = "id_depo")})
+	Set<Depo> depos=new HashSet<Depo>();
+	}

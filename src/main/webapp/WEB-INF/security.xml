@@ -8,21 +8,7 @@
     http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true" use-expressions="false">
-	<access-denied-handler
-			error-page="/accessDenied" />
-		<intercept-url pattern="/news/read"
-			access="ROLE_USER, ROLE_ADMIN" />
-		<intercept-url pattern="/news/showFormForAdd"
-			access="ROLE_ADMIN" />
-		<intercept-url pattern="/news/add" access="ROLE_ADMIN" />
-		<intercept-url pattern="/news/delete"
-			access="ROLE_ADMIN" />
-		<intercept-url pattern="/news/showFormForUpdate"
-			access="ROLE_ADMIN" />
-		<intercept-url pattern="/news/addComment"
-			access="ROLE_USER, ROLE_ADMIN" />
-		<intercept-url pattern="/login*"
-			access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER" />
+	
 		<intercept-url pattern="/**"
 			access="ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_USER" />
 	
