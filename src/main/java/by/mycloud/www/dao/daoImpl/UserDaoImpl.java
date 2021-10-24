@@ -17,6 +17,7 @@ public class UserDaoImpl implements UserDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void register(User user) {
+//		System.out.println("DAO USER"+user);
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(user);
 	}

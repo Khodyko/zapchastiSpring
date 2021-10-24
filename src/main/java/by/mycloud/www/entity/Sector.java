@@ -56,5 +56,5 @@ public class Sector implements Serializable {
 	@ToString.Exclude
 	@ManyToMany(cascade = { CascadeType.ALL })
 	@JoinTable(name = "depo_parent_sector", joinColumns = {@JoinColumn(name = "id_sector")}, inverseJoinColumns = {@JoinColumn(name = "id_depo")})
-	Set<Depo> depos=new HashSet<Depo>();
+	List<Depo> depos=new ArrayList<Depo>();
 	}

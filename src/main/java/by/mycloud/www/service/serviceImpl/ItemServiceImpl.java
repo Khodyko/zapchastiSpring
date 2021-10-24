@@ -39,4 +39,18 @@ public class ItemServiceImpl implements ItemService {
 		return sectorList;
 	}
 
+	@Override
+	@Transactional
+	public Depo getDepoById(Integer id) {
+		Depo depo=itemDao.getDepoById(id);
+		return depo;
+	}
+
+	@Override
+	@Transactional
+	public Sector getSectorById(Integer Id) {
+		Sector sector= itemDao.getSectorById(Id);
+		return sector;
+	}
+
 }

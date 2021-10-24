@@ -19,7 +19,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "item")
+@Table(name = "user")
 @Setter
 
 @Getter
@@ -70,15 +70,38 @@ public class User {
 	@NotNull(message = "{message.is.required}")
 	@ManyToOne (optional=false, cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_sector")
-	private Sector idSector;
+	private Sector sector;
 	
 	@NotNull(message = "{message.is.required}")
 	@ManyToOne (optional=false, cascade=CascadeType.ALL)
 	@JoinColumn(name = "id_depo")
-	private Depo idDepo;
+	private Depo depo;
 	
 	@NotNull(message = "{message.is.required}")
 	@Column(name = "agreed")
 	private Boolean agreed;
+
+	public User(
+			@NotNull(message = "{message.is.required}") @Pattern(regexp = "(.){1,20}", message = "{valid.name}") String name,
+			@NotNull(message = "{message.is.required}") @Pattern(regexp = "(.){1,20}", message = "{valid.name}") String surname,
+			@NotNull(message = "{message.is.required}") @Pattern(regexp = "(.){1,70}", message = "{valid.name}") String password,
+			@NotNull(message = "{message.is.required}") @Pattern(regexp = "(.){1,20}", message = "{valid.name}") String role,
+			@NotNull(message = "{message.is.required}") @Pattern(regexp = "(.){1,30}", message = "{valid.name}") String email,
+			@NotNull(message = "{message.is.required}") Sector sector,
+			@NotNull(message = "{message.is.required}") Depo depo,
+			@NotNull(message = "{message.is.required}") Boolean agreed) {
+		super();
+		this.idUser=null;
+		this.name = name;
+		this.surname = surname;
+		this.password = password;
+		this.role = role;
+		this.email = email;
+		this.sector = sector;
+		this.depo = depo;
+		this.agreed = agreed;
+	}
+	
+	
 	
 }

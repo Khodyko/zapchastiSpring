@@ -1,7 +1,9 @@
 package by.mycloud.www.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -51,9 +53,9 @@ public class Depo implements Serializable {
 	private String name;
 
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany 
 	@JoinTable(name = "depo_parent_sector", joinColumns = {@JoinColumn(name = "id_depo")}, inverseJoinColumns = {@JoinColumn(name = "id_sector")})
-	Set<Sector> sectors=new HashSet<Sector>();
+	List<Sector> sectors=new ArrayList<Sector>();
 	
 //	@ManyToOne (optional=false, cascade=CascadeType.ALL)
 //    @JoinColumn (name="id_depo")

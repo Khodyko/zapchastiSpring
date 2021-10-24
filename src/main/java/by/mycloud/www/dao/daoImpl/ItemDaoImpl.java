@@ -1,7 +1,10 @@
 package by.mycloud.www.dao.daoImpl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +22,9 @@ public class ItemDaoImpl implements ItemDao {
 	/**
 	 * 
 	 */
-	final private static String QUERY_GET_SECTOR_LIST_BY_DEPO_ID = "FROM Sector WHERE depos.id_depo  = : depoUI1";
-	
+	final private static String QUERY_GET_SECTOR_LIST_BY_DEPO_ID = "FROM Depo WHERE id_depo  = :depoUI";
+	final private static String QUERY_GET_DEPO_BY_ID = "FROM Depo WHERE id_depo  = :depoUI";
+	final private static String QUERY_GET_SECTOR_BY_ID = "FROM Sector WHERE id_sector  = :sectorUI";
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -58,14 +62,38 @@ public class ItemDaoImpl implements ItemDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Sector> getSectorList(Integer depoUI1) {
-		System.out.println("depoUI:"+ depoUI1);
+	public List<Sector> getSectorList(Integer depoUI) {
+		System.out.println("depoUI:"+ depoUI);
 		Session session = sessionFactory.getCurrentSession();
-		List<Sector> sectorList = (List<Sector>) session.createQuery(QUERY_GET_SECTOR_LIST_BY_DEPO_ID)
-				.setParameter("depoUI", depoUI1)
+		List<Depo> depoList = (List<Depo>) session.createQuery(QUERY_GET_SECTOR_LIST_BY_DEPO_ID)
+				.setParameter("depoUI", depoUI)
 				.list();
+		
+		List<Sector> sectorList=  new ArrayList(depoList.get(0).getSectors());
 		System.out.println("sectorlist DAO: "+sectorList);
-		return sectorList;
+		System.out.println("concrete sector "+ sectorList.get(0).getName());
+		
+		return  sectorList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Depo getDepoById(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		Depo depo = (Depo)session.createQuery(QUERY_GET_DEPO_BY_ID)
+				.setParameter("depoUI", id)
+				.uniqueResult();
+		return depo;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Sector getSectorById(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		Sector sector = (Sector)session.createQuery(QUERY_GET_SECTOR_BY_ID)
+				.setParameter("sectorUI", id)
+				.uniqueResult();
+		return sector;
 	}
 	
 	

@@ -14,5 +14,8 @@ public interface ItemService {
 
 	List<Sector> getSectorList(Integer depoUI);
 	
+	Depo getDepoById(Integer Id);
+	
 
+	Sector getSectorById(Integer Id);
 }

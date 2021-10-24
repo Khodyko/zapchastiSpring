@@ -38,16 +38,16 @@
 				style="margin: 5px; border-color: #35B9FF; border-width: 1px; border-style: solid; border-radius: 9px; width: 212px; height: 45px; color: #809EAE; padding-left: 4px;">
 
 				<option value=""><a>Выберите Ваше предприятие</a></option>
-				<c:if test="${depo_bd_list != null}">
-					<c:forEach var="depo" items="${depo_bd_list}">
+				<c:if test="${depo_db_list != null}">
+					<c:forEach var="depo" items="${depo_db_list}">
 						<option value="${depo.getId()}">${depo.getName()}</option>
 					</c:forEach>
 				</c:if>
 			</select>
 
-			<input type="text" name="nameUI" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
+			<input type="text" name="nameUI" value="" 
 				placeholder="Имя" />
-			<input type="text" name="secondNameUI" value="" required pattern="^[А-Яа-яЁё//-]{3,20}$" title="Текст кириллицей, возможно тире (3-20 символов)"
+			<input type="text" name="secondNameUI" value="" 
 				placeholder="Фамилия" />
 
 			<input type="submit" value="Дальше" class="bluebutton" style="width: 220px; height: 40px;" />

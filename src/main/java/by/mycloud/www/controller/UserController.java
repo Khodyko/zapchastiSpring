@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -47,41 +48,60 @@ public class UserController {
 			List<Depo> depoList=itemService.getDepoList();
 			ModelAndView modelAndView = new ModelAndView();
 			modelAndView.setViewName("registration1");
-			modelAndView.addObject("depo_bd_list",depoList);
+			modelAndView.addObject("depo_db_list",depoList);
 			
-			System.out.println("controller:"+ depoList);
+			System.out.println("modelAndView:"+ modelAndView);
 			
 			return modelAndView;
 		}
 		
 		@RequestMapping("/goToRegistration2")
-		public ModelAndView goToRegistration2(@RequestParam(defaultValue = "") Integer depoUI,
-				@RequestParam(defaultValue = "1") String nameUI
+		public ModelAndView goToRegistration2(@RequestParam Integer depoIdUI,
+				@RequestParam(defaultValue = "1") String nameUI, 
+				@RequestParam(defaultValue = "1") String secondNameUI
 				) {
 			System.out.println("controller nameID: "+ nameUI);
-			System.out.println("controller depiID: "+ depoUI);
-			List<Sector> sectorList=itemService.getSectorList(depoUI);
+			System.out.println("controller depiID: "+ depoIdUI);
+			List<Sector> sectorList=itemService.getSectorList(depoIdUI);
 			ModelAndView modelAndView = new ModelAndView();
 			modelAndView.setViewName("registration2");
-			modelAndView.addObject("sector_bd_list",sectorList);
+			modelAndView.addObject("depoIdUI",depoIdUI);
+			modelAndView.addObject("sectorUI",sectorList);
+			modelAndView.addObject("nameUI",nameUI);
+			modelAndView.addObject("secondNameUI",secondNameUI);
 			
-			System.out.println("controllerSector:"+ sectorList);
+			System.out.println("modelAndView:"+ modelAndView);
 			
 			return modelAndView;
 		}
 		
 		@RequestMapping("/register")
-		public ModelAndView registerNewUser(@Valid @ModelAttribute("user") User user, BindingResult theBindingResult) {
+		public ModelAndView registerNewUser(@RequestParam(defaultValue = "") Integer depoIdUI,
+				@RequestParam(defaultValue = "1") String nameUI, 
+				@RequestParam(defaultValue = "1") String secondNameUI, 
+				@RequestParam(defaultValue = "1") String emailUI, 
+				@RequestParam(defaultValue = "0") Integer sectorIdUI,
+				@RequestParam(defaultValue = "1") String passwordUI, 
+				@RequestParam(defaultValue = "1") String password2UI) {
 
+			User user;
 			ModelAndView modelAndView = new ModelAndView();
 
-			if (theBindingResult.hasErrors()) {
-				modelAndView.setViewName("registration2");
-			} else {
-				
-				userService.register(user);
+//			if (theBindingResult.hasErrors()) {
+//				modelAndView.setViewName("registration2");
+//			} else {
+				// make false when realised method
+				user=new User(nameUI,secondNameUI, passwordUI, "user", emailUI, itemService.getSectorById(sectorIdUI), itemService.getDepoById(depoIdUI), true);
+				try {
+				userService.register(user, password2UI);
+				}
+				catch(AuthenticationServiceException e) {
+					//msg!!!
+					modelAndView.setViewName("registration2");
+					return modelAndView;
+				}
 				modelAndView.setViewName("loginPage");
-			}
+//			}
 
 			return modelAndView;
 		}

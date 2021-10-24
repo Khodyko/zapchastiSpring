@@ -10,8 +10,7 @@
 <head>
 <style>
 @import
-	url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap')
-	;
+	url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
 </style>
 <meta charset="utf-8">
 <title>REGISTRATION_2_PAGE</title>
@@ -32,24 +31,23 @@
 			<a href="Controller?commandToController=GO_TO_AUTHORIZATION_PAGE">Страница авторизации</a>
 			<br>
 		</div>
-		<form action="Controller" method="post" style="color: white">
-			<select name="sector"
+		<form:form action="${pageContext.request.contextPath}/user/register" method="POST" style="color: white;">
+			<select name="sectorIdUI"
 				style="margin: 5px; border-color: #35B9FF; border-width: 1px; border-style: solid; border-radius: 9px; width: 212px; height: 45px; color: #809EAE; padding-left: 4px;">
 
-				<option name="sector" value="";"><a>Выберите участок</a></option>
-				<c:if test="${sectorsDb != null}">
-					<c:forEach var="sector" items="${sectorsDb}">
-						<option value="${sector.getIdSector()}";>${sector.getName()}</option>
+				<option  value=""><a>Выберите Ваш участок</a></option>
+				<c:if test="${sectorUI != null}">
+					<c:forEach var="sector" items="${sectorUI}">
+						<option value="${sector.getId()}">${sector.getName()}</option>
 					</c:forEach>
 				</c:if>
 			</select>
-			<input type="hidden" name="depo" value=${depo }  />
-			<input type="hidden" name="name" value=${name }  />
-			<input type="hidden" name="second_name" value=${second_name }  />
-			<input type="hidden" name="commandToController" value="REGISTRATION_NEW_USER" />
-			<input type="text" name="email" value="" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="text@text.2or3symbols" placeholder="Email" />
-			<input type="password" name="password" value="" required pattern="^(?=^.{6,20}$)(?=.*[0-9])(?=.*[A-Za-zА-Яа-я!@#$%^&*?]).*$" title="Пароль должен содержать минимум 6 символов, из них хотя бы одну цифру" placeholder="Пароль" />
-			<input type="password" name="password2" value="" required pattern="^(?=^.{6,20}$)(?=.*[0-9])(?=.*[A-Za-zА-Яа-я!@#$%^&*?]).*$" title="Пароль должен содержать минимум 6 символов, из них хотя бы одну цифру" placeholder="Повторите пароль" />
+			<input type="hidden" name="depoIdUI" value=${depoIdUI }  />
+			<input type="hidden" name="nameUI" value=${nameUI }  />
+			<input type="hidden" name="secondNameUI" value=${secondNameUI }  />
+			<input type="text" name="emailUI" value=""  placeholder="Email" />
+			<input type="password" name="passwordUI" value=""  placeholder="Пароль" />
+			<input type="password" name="password2UI" value=""  placeholder="Повторите пароль" />
 
 
 			<input type="submit" value="Отправить" class="bluebutton" style="width: 220px; height: 40px;" />
@@ -61,7 +59,7 @@
 			<br>
 			<br>
 			<br>
-		</form>
+		</form:form>
 
 
 	</div>

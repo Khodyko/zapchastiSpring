@@ -14,4 +14,8 @@ public interface ItemDao {
 
 	List<Sector> getSectorList(Integer depoUI);
 
+	Depo getDepoById(Integer Id);
+
+	Sector getSectorById(Integer Id);
+
 }
